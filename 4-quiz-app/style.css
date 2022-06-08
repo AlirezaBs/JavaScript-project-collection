@@ -1,0 +1,43 @@
+* {
+    font-size: 20px;
+}
+#alert {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    color: rgb(34, 133, 4);
+    padding: 2rem;
+    z-index: 1;
+}
+
+#overlay {
+    display: none;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+#quiz-form {
+    margin: 50px 0 50px 60px;
+}
+
+.question-item {
+    margin-bottom: 50px;
+}
+
+#alert.active, #overlay.active {
+    display: block;
+}
+
+.question-item.correct {
+    color: green;
+}
+.question-item.incorrect {
+    color: red;
+}

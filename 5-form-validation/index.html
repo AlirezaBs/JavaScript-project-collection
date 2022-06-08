@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>form validation</title>
+    <link rel="stylesheet" href="./style.css" />
+    <script src="./script.js" defer></script>
+  </head>
+  <body>
+    <form action="./thank-you.html " id="form">
+      <div class="input-group">
+        <label for="username">username</label>
+        <input type="text" name="username" id="username" />
+      </div>
+
+      <div class="input-group">
+        <label for="password">Password</label>
+        <input type="password" name="password" id="password" />
+      </div>
+
+      <div class="input-group">
+        <label for="password-confirmation">Confirm password</label>
+        <input
+          type="password"
+          name="password-confirmation"
+          id="password-confirmation"
+        />
+      </div>
+
+      <div class="check-group">
+        <input type="checkbox" name="terms" id="terms" />
+        <label for="terms">Agree to terms</label>
+      </div>
+
+      <button type="submit">Create account</button>
+
+      <div class="errors">
+        <ul class="error-list"></ul>
+      </div>
+    </form>
+  </body>
+</html>
