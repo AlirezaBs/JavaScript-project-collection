@@ -1,0 +1,89 @@
+@import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri&display=swap');
+
+html {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Hind Siliguri', sans-serif;
+  background-color: #f3faed;
+}
+
+#todo {
+  width: 90%;
+  margin: 2rem auto;
+  padding: 0.5rem 0.5rem;
+  background-color: #cfe0c3;
+  border-radius: 0.2rem;
+}
+
+#new-todo-form {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+#new-todo-form > input {
+  width: 100%;
+  height: 30px;
+  font-size: medium;
+  padding: 0 .7rem;
+  outline: none;
+  border: 0;
+  border-radius: 0.2rem 0 0 0.2rem;
+}
+
+#new-todo-form > input:focus {
+  box-shadow: inset 0px 0px 3px #81a568;
+}
+
+#new-todo-form > button {
+  height: 30px;
+  width: 100px;
+  border: 0;
+  border-radius: 0 0.2rem 0.2rem 0;
+}
+
+#list {
+  padding: 0;
+}
+
+.list-item {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid #bfd1b2;
+  padding: 5px;
+  margin-bottom: 5px;
+}
+
+.list-item.isChecked {
+  opacity: .3;
+}
+
+.todoBtns {
+  position: relative;
+  border: none;
+  height: 1.5rem;
+}
+
+.popupShow {
+  font-family: 'Hind Siliguri', sans-serif;
+  font-weight: 200;
+  font-size: .8rem;
+  width: 128px;
+  position: absolute;
+  top: -3.5px;
+  left: -150px;
+  background-color: #e9ece6;
+  padding: 2px;
+}
+
+.popupShow::after {
+  content: '';
+  position: absolute;
+  top: 25%;
+  left: 100%;
+  border: 8px solid;
+  border-color: transparent  transparent transparent #e9ece6;
+}

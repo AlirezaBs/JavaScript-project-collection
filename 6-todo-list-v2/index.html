@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Todo list V2</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+      integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="./style.css" />
+    <script src="./script.js" defer></script>
+  </head>
+  <body>
+    <section id="todo">
+      <form id="new-todo-form">
+        <input type="text" id="todo-input" placeholder="New Todo" />
+        <button type="submit">Add Todo</button>
+      </form>
+
+      <ul id="list"></ul>
+    </section>
+
+    <template id="list-item-template">
+      <li class="list-item">
+        <label class="list-item-label">
+          <input type="checkbox" data-list-item-checkbox />
+          <span data-list-item-text></span>
+        </label>
+
+        <div class="list-item-buttons">
+          <button class="todoBtns fas fa-info-circle" data-button-info></button>
+          <button class="todoBtns" data-button-delete>Delete</button>
+        </div>
+      </li>
+    </template>
+  </body>
+</html>
