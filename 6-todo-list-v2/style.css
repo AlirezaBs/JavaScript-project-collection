@@ -8,9 +8,20 @@ html {
   background-color: #f3faed;
 }
 
+.header {
+  font-weight: 100;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+.header > span {
+  font-size: medium;
+  font-family: Georgia;
+}
+
 #todo {
   width: 90%;
-  margin: 2rem auto;
+  margin: 1rem auto;
   padding: 0.5rem 0.5rem;
   background-color: #cfe0c3;
   border-radius: 0.2rem;
@@ -45,6 +56,7 @@ html {
 
 #list {
   padding: 0;
+  transition: 1s;
 }
 
 .list-item {
@@ -55,6 +67,17 @@ html {
   border: 1px solid #bfd1b2;
   padding: 5px;
   margin-bottom: 5px;
+  transition: 1s;
+}
+
+.list-item-data {
+  max-width: 70%;
+}
+
+.list-item-buttons .list-item-label {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
 }
 
 .list-item.isChecked {
@@ -85,5 +108,13 @@ html {
   top: 25%;
   left: 100%;
   border: 8px solid;
-  border-color: transparent  transparent transparent #e9ece6;
+  border-color: transparent transparent transparent #e9ece6;
+}
+
+.drag {
+  cursor: move;
+}
+
+.draggable.dragging {
+  opacity: .5;
 }

@@ -8,6 +8,50 @@ const LOCAL_STORAGE_KEY = `${LOCAL_STORAGE_PREFIX}-todos`
 
 let todos = loadTodos()
 todos.forEach(renderTodo)
+console.log(todos)
+
+// add class to list item when it is dragging
+const draggables = document.querySelectorAll(".draggable")
+draggables.forEach((draggable) => {
+  draggable.addEventListener("dragstart", () => {
+    draggable.classList.add("dragging")
+  })
+
+  draggable.addEventListener("dragend", () => {
+    draggable.classList.remove("dragging")
+  })
+})
+
+// drag elements
+list.addEventListener("dragover", (e) => {
+  e.preventDefault()
+  const afterElement = getDragAfterElement(list, e.clientY)
+  const draggable = document.querySelector(".dragging")
+  if (afterElement == null) {
+    list.appendChild(draggable)
+  } else {
+    list.insertBefore(draggable, afterElement)
+  }
+})
+function getDragAfterElement(container, y) {
+  const draggabelElements = [
+    ...container.querySelectorAll(".draggable:not(.dragging)"),
+  ]
+
+  return draggabelElements.reduce(
+    (closest, child) => {
+      const box = child.getBoundingClientRect() // gives us a rectangle for a box
+      const offset = y - box.top - box.height / 2 // distance of center of box to our mouse position
+      //
+      if (offset < 0 && offset > closest.offset) {
+        return { offset: offset, element: child }
+      } else {
+        return closest
+      }
+    },
+    { offset: Number.NEGATIVE_INFINITY }
+  ).element
+}
 
 // checked todos -- if same id
 list.addEventListener("change", (e) => {
@@ -29,9 +73,12 @@ list.addEventListener("click", (e) => {
 
   const parent = e.target.closest(".list-item")
   const todoId = parent.dataset.todoId
-  parent.remove()
-  todos = todos.filter((todo) => todo.id !== todoId)
-  saveTodos()
+  parent.style.transform = `translate(${e.clientX - 70}px)`
+  setTimeout(() => {
+    parent.remove()
+    todos = todos.filter((todo) => todo.id !== todoId)
+    saveTodos()
+  }, 500)
 })
 
 // add todos
@@ -52,21 +99,21 @@ form.addEventListener("submit", (e) => {
 })
 
 // Todo details
-list.addEventListener('click', (e) => {
-  if(!e.target.matches('[data-button-info]')) return
+list.addEventListener("click", (e) => {
+  if (!e.target.matches("[data-button-info]")) return
 
-  const parent = e.target.closest('.list-item')
+  const parent = e.target.closest(".list-item")
   const todoId = parent.dataset.todoId
-  const todo = todos.find(t => t.id === todoId)
+  const todo = todos.find((t) => t.id === todoId)
 
-  const popup = document.createElement('span')
+  const popup = document.createElement("span")
   popup.innerText = todo.details
-  popup.classList.add('popupShow')
+  popup.classList.add("popupShow")
   e.target.appendChild(popup)
 
   setTimeout(() => {
     popup.remove()
-  },3000)
+  }, 3000)
 })
 
 function renderTodo(todo) {

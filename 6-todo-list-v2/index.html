@@ -18,6 +18,11 @@
     <script src="./script.js" defer></script>
   </head>
   <body>
+    <h1 class="header">
+      <span>AlirezaBbz</span> todo list
+    </h1>
+
+
     <section id="todo">
       <form id="new-todo-form">
         <input type="text" id="todo-input" placeholder="New Todo" />
@@ -28,11 +33,14 @@
     </section>
 
     <template id="list-item-template">
-      <li class="list-item">
-        <label class="list-item-label">
-          <input type="checkbox" data-list-item-checkbox />
-          <span data-list-item-text></span>
-        </label>
+      <li class="list-item draggable" draggable="true">
+        <div class="list-item-data">
+          <i class="fa-solid fa-bars drag"></i>
+          <label class="list-item-label">
+            <input type="checkbox" data-list-item-checkbox />
+            <span class="todoText" data-list-item-text></span>
+          </label>
+        </div>
 
         <div class="list-item-buttons">
           <button class="todoBtns fas fa-info-circle" data-button-info></button>
