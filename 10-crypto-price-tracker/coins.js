@@ -1,3 +1,4 @@
+
 import globalAddEventListener from "./util/globalAddEventListener"
 
 const tableBody = document.querySelector("#table-body")
@@ -21,6 +22,7 @@ export async function setCoins() {
   tableSection.classList.remove("invisible")
   spinner.classList.add("invisible")
 
+  // load more coins
   globalAddEventListener("click", "[data-load-more]", (e) => loadMore())
 
   // updating data
@@ -28,9 +30,15 @@ export async function setCoins() {
     updateGlobalData()
     updateData()
   }, 10000)
+
+  // search box
+  globalAddEventListener('input', '[data-search-input]', (e) => searchCoins(e))
+
+  // add to favorite
+  globalAddEventListener('click', '[data-add-favorite]', (e) => addCoinToFavorite(e))
 }
 
-async function updateGlobalData() {
+async function updateGlobalData() { 
   await getGlobalData()
   renderGlobalData()
 }
@@ -104,6 +112,41 @@ async function getUpdatedData() {
   }
 }
 
+function addCoinToFavorite(e) {
+  const tableRow = e.target.closest('[data-id]')
+  const id = tableRow.dataset.coinId
+
+  const coin = allCoins.find(i => i.id == id)
+
+  if(coin.isFavorite){
+    e.target.classList.toggle('fa-solid', false)
+    e.target.classList.toggle('fa-regulaar', true)
+
+    coin.isFavorite = false
+  }else {
+    e.target.classList.toggle('fa-solid', true)
+    e.target.classList.toggle('fa-regulaar', false)
+
+    coin.isFavorite = true
+  }
+}
+
+
+function searchCoins(e) {
+  e.preventDefault()
+  const searchText = e.target.value.toLowerCase()
+
+  allCoins.forEach(coin => {
+    const tableRow = tableBody.querySelector(`[data-coin-id="${coin.id}"`)
+
+    if (coin.name.toLowerCase().includes(searchText) || coin.symbol.toLowerCase().includes(searchText)){
+      tableRow.classList.toggle('hidden', false)
+    }else {
+      tableRow.classList.toggle('hidden', true)  
+    }
+  })
+}
+
 function mergeLists() {
   allCoins.forEach((coinData) => {
     let updatedCoin = updatingCoins.find((i) => i.id === coinData.id)
@@ -134,7 +177,7 @@ function renderGlobalData() {
   const avgChange = document.querySelector("[data-avg-change]")
   avgChange.innerText = `${globalData.avgChange}%`
   if (globalData.avgChange >= 0) {
-    avgChange.classList.add("text-green-500")
+    avgChange.classList.add("text-green-400")
   } else {
     avgChange.classList.add("text-red-500")
   }
@@ -142,7 +185,7 @@ function renderGlobalData() {
   const volumeChange = document.querySelector("[data-volume-change]")
   volumeChange.innerText = `${globalData.volumeChange}%`
   if (globalData.volumeChange >= 0) {
-    volumeChange.classList.add("text-green-500")
+    volumeChange.classList.add("text-green-400")
   } else {
     volumeChange.classList.add("text-red-500")
   }
