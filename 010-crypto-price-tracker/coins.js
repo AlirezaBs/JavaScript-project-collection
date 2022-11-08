@@ -6,7 +6,7 @@ const tableRowTemplate = document.querySelector("#coin-table-row")
 const tableSection = document.querySelector("#table-section")
 const spinner = document.querySelector("#spinner")
 const spinner2 = document.querySelector("#spinner2")
-
+ 
 let globalData = {}
 let allCoins = []
 let updatingCoins = []
