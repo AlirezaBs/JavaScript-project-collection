@@ -1,4 +1,4 @@
-// ACTIONS (WalkThrow)
+// ACTIONS (WalkThrought)
 //  1. Clicking a number
 //  2. Click clear button
 //  3. Click delete button
